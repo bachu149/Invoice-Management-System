@@ -1,16 +1,82 @@
-# React + Vite
+# Invoice Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack web application for managing invoices, built with React.js frontend and Express.js backend using SQLite database.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User authentication (Login/Signup)
+- Create, read, update, and delete invoices
+- Filter invoices by status (Paid, Unpaid, Pending)
+- Sort invoices by date or amount
+- Responsive UI with professional styling
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend:** React.js, React Router, Vite
+- **Backend:** Node.js, Express.js
+- **Database:** SQLite
+- **Authentication:** JWT, bcrypt
 
-## Expanding the ESLint configuration
+## Setup Instructions
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd invoice-management-system
+   ```
+
+2. Install backend dependencies:
+   ```bash
+   cd server
+   npm install
+   ```
+
+3. Install frontend dependencies:
+   ```bash
+   cd ../client
+   npm install
+   ```
+
+### Running the Application
+
+1. Start the backend server:
+   ```bash
+   cd server
+   npm start
+   ```
+   The server will run on http://localhost:5000
+
+2. Start the frontend:
+   ```bash
+   cd ../client
+   npm run dev
+   ```
+   The app will run on http://localhost:5173
+
+### Database
+The SQLite database (`invoices.db`) will be created automatically when the server starts.
+
+## API Endpoints
+
+- `POST /api/signup` - Register a new user
+- `POST /api/login` - Login user
+- `GET /api/invoices` - Get all invoices
+- `POST /api/invoices` - Create a new invoice
+- `PUT /api/invoices/:id` - Update an invoice
+- `DELETE /api/invoices/:id` - Delete an invoice
+
+## Usage
+
+1. Sign up for a new account or login with existing credentials.
+2. View the list of invoices on the home page.
+3. Use filters and sorting to manage invoices.
+4. Add new invoices or edit/delete existing ones.
+
+
+This project is for educational purposes.
