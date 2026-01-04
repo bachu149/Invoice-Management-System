@@ -1,0 +1,459 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+}
+
+.App {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  min-height: 80vh;
+  backdrop-filter: blur(10px);
+}
+
+.login, .signup, .home, .invoice-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: 600;
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+input, select {
+  margin: 10px 0;
+  padding: 12px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+  color: #333; /* Black text color */
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background: white;
+  transform: translateY(-1px);
+}
+
+button {
+  margin: 20px 0 10px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Add New Invoice Button */
+.add-invoice-btn {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.add-invoice-btn::before {
+  content: '+';
+  position: absolute;
+  left: -50%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.8);
+  transition: left 0.3s ease;
+}
+
+.add-invoice-btn:hover::before {
+  left: 15px;
+}
+
+.add-invoice-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+  background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
+}
+
+.add-invoice-btn:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Status Badges */
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.status-paid {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+.status-unpaid {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
+.status-pending {
+  background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+  color: #333;
+  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
+}
+
+.status-badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  display: grid;
+  gap: 15px;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #e1e5e9;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: #667eea;
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+li:hover::before {
+  transform: scaleY(1);
+}
+
+li:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
+}
+
+.controls {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+select {
+  padding: 12px 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  appearance: none; /* Remove default arrow */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px; /* Space for custom arrow */
+}
+
+select:hover {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #f1f3f4 0%, #e8eaed 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+.invoice-details {
+  flex: 1;
+  font-weight: 500;
+}
+
+.invoice-details strong {
+  color: #667eea;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.invoice-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.invoice-actions button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.edit-btn {
+  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+  color: white;
+}
+
+.edit-btn:hover {
+  background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+}
+
+.delete-btn {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  color: white;
+}
+
+.delete-btn:hover {
+  background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+@media (max-width: 768px) {
+  .App {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .login, .signup, .home, .invoice-form {
+    padding: 20px;
+  }
+
+  form {
+    padding: 20px;
+  }
+
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  button {
+    min-height: 44px; /* Touch-friendly */
+    font-size: 16px;
+  }
+
+  input, select {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+}
+
+/* Additional mobile enhancements for very small screens */
+@media (max-width: 480px) {
+  body {
+    padding: 0;
+  }
+
+  .App {
+    margin: 5px;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .login, .signup, .home, .invoice-form {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  form {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  input, select {
+    padding: 14px; /* Larger touch targets */
+    margin: 8px 0;
+  }
+
+  button, .add-invoice-btn {
+    padding: 14px 20px;
+    min-height: 48px;
+    font-size: 16px;
+  }
+
+  ul {
+    gap: 10px;
+  }
+
+  li {
+    padding: 15px;
+    gap: 8px;
+  }
+
+  .invoice-details {
+    width: 100%;
+  }
+
+  .invoice-details strong {
+    font-size: 16px;
+  }
+
+  .invoice-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .invoice-actions button {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .controls {
+    gap: 10px;
+  }
+
+  select {
+    padding-right: 35px;
+    background-size: 14px;
+  }
+
+  .status-badge {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+}
