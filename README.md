@@ -78,23 +78,9 @@ The SQLite database (`invoices.db`) will be created automatically when the serve
 3. Use filters and sorting to manage invoices.
 4. Add new invoices or edit/delete existing ones.
 
-## Screenshots
 
-(Add screenshots here if available)
 
-## Deployment
 
-### Backend (Render)
-1. Create account on Render.com
-2. Connect GitHub repository
-3. Set build command: `npm install`
-4. Set start command: `npm start`
-5. Add environment variable: `NODE_ENV=production`
-
-### Frontend (Vercel/Netlify)
-1. Build the frontend: `npm run build`
-2. Deploy `dist` folder to Vercel or Netlify
-3. Update API URLs in components to point to deployed backend
 
 ## Live Demo
 
